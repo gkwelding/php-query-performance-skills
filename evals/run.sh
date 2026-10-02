@@ -46,7 +46,7 @@ scaffold() {
                     && composer require -n --quiet --dev symfony/test-pack symfony/web-profiler-bundle \
                     && sed -i 's#^DATABASE_URL=.*#DATABASE_URL="sqlite:///%kernel.project_dir%/var/data_%kernel.environment%.db"#' .env) ;;
         esac
-        (cd "$dir" && git init -q)
+        (cd "$dir" && git init -q && git config core.longpaths true) # Windows: long scratch paths + migration names pass 260 chars
     fi
 
     # Copy fixtures on every run so edits reach an existing scaffold.
