@@ -25,8 +25,8 @@ An agent skill for finding and fixing database query problems in Laravel (Eloque
 ### Claude Code plugin
 
 ```
-/plugin marketplace add gkwelding/php-query-performance-skills
-/plugin install php-query-performance-skills@php-query-performance-skills
+/plugin marketplace add gkwelding/php-unit-tests-skills
+/plugin install php-query-performance-skills@blackpug
 ```
 
 The command becomes `/php-query-performance-skills:optimise-queries <target>`.
