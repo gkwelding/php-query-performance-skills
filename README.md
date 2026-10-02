@@ -78,13 +78,18 @@ skills/
         ├── laravel/     # measuring, eager loading, queries and batches
         └── doctrine/    # measuring, fetching, batch processing
 scripts/build-skills.sh  # packages dist/*.skill for claude.ai
+evals/                   # with/without-skill comparison on Laravel and Symfony fixtures
 ```
 
 ## Status
 
 First version. The rules were written against the framework sources listed above, and the behaviour they describe (query counts, skipped rows, truncated collections, exceptions) was reproduced in small SQLite scripts. Treat it as a strong starting point.
 
-There's no eval yet. One that would fit: fixture Laravel and Symfony apps with planted problems (an N+1 in a resource, a `$appends` accessor that queries, `chunk()` over a column the callback changes, a filtered fetch join, `setMaxResults()` on a fetch-joined collection), each with a hidden query-count test and an output snapshot. A run scores the query count after the fix, whether the output still matches, and whether the report's before/after numbers agree with the hidden test, with and without the skill.
+## Evals
+
+[`evals/`](evals/README.md) compares fixes made with and without the skill on Laravel and Symfony fixtures with planted problems: an N+1 in a controller loop, a nested N+1 in API Resources, a `count()` per row where `withCount` fits, a `chunk()` that skips rows, and lazy Doctrine associations in a Twig loop. Hidden tests, copied in only after Claude has finished, score each run: query count at two data sizes before and after, exact output unchanged (including after a write, so a cache fails), caching added, schema changes proposed vs applied, files changed and cost. A blind side-by-side review compares the two diffs.
+
+First result, one sample (`ArchiveStaleOrders`, default model): both variants caught the `chunk()` trap and kept the output identical. The plain prompt also batched the per-row `UPDATE`s, so it got the command to 3 queries at both data sizes, against 10 / 29 for the skill, at about half the cost ($0.25 vs $0.45). The skill left a query-count test as a regression guard. Possible rule gap: a loop that writes one row at a time inside `chunkById()`.
 
 ## Licence
 

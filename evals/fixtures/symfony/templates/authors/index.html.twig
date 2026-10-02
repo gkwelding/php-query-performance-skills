@@ -1,0 +1,5 @@
+<ul>
+{% for author in authors %}
+    <li>{{ author.name }} ({{ author.publisher.name }}): {{ author.books|length }} books{% for book in author.books %}{{ loop.first ? ' - ' : ', ' }}{{ book.title }}{% endfor %}</li>
+{% endfor %}
+</ul>

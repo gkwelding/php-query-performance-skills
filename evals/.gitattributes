@@ -1,0 +1,2 @@
+# Snapshots are compared byte for byte and the scripts run under bash: no CRLF on checkout.
+* text=auto eol=lf
