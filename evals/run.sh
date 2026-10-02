@@ -89,8 +89,9 @@ run_one() {
         else
             prompt="$target is slow. Fix its database queries without changing behaviour."
         fi
-        # MSYS_NO_PATHCONV stops Git Bash on Windows rewriting "/optimise-queries" into a file path.
-        (cd "$dir" && MSYS_NO_PATHCONV=1 MSYS2_ARG_CONV_EXCL='*' claude -p "$prompt" ${MODEL:+--model "$MODEL"} \
+        # Prompt on stdin: as an argument, Git Bash rewrites "/optimise-queries" into a file path, and MSYS_NO_PATHCONV
+        # would leak into Claude's own shell. --setting-sources project keeps user plugins and hooks out.
+        (cd "$dir" && printf '%s' "$prompt" | claude -p --setting-sources project ${MODEL:+--model "$MODEL"} \
             --max-budget-usd "$budget" --no-session-persistence --permission-mode acceptEdits --output-format json \
             --allowedTools "Read,Write,Edit,Glob,Grep,Bash(php:*),Bash(vendor/bin/phpunit:*),Bash(vendor/bin/pest:*),Bash(bin/phpunit:*),Bash(bin/console:*),Bash(composer dump-autoload:*),Bash(git diff:*),Bash(git status:*)" \
             > "$out.claude.json" 2> "$out.claude.err") || echo "   claude exited non-zero, see $results/$name.claude.err"
