@@ -1,0 +1,23 @@
+{
+  "name": "php-query-performance-skills",
+  "displayName": "PHP Query Performance Skills",
+  "description": "Find and fix database query problems in Laravel (Eloquent) and Symfony (Doctrine ORM) code, above all N+1 queries. Measures the query count first, fixes without changing behaviour, and proves each fix with the count afterwards.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Black Pug Ltd"
+  },
+  "license": "MIT",
+  "keywords": [
+    "php",
+    "laravel",
+    "eloquent",
+    "symfony",
+    "doctrine",
+    "n+1",
+    "eager-loading",
+    "query-performance",
+    "database"
+  ],
+  "homepage": "https://github.com/gkwelding/php-query-performance-skills",
+  "repository": "https://github.com/gkwelding/php-query-performance-skills"
+}

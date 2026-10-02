@@ -1,0 +1,25 @@
+{
+  "name": "php-query-performance-skills",
+  "description": "Query performance skills for PHP projects.",
+  "owner": {
+    "name": "Black Pug Ltd"
+  },
+  "plugins": [
+    {
+      "name": "php-query-performance-skills",
+      "source": "./",
+      "displayName": "PHP Query Performance Skills",
+      "description": "Find and fix N+1 and other query problems in Laravel and Symfony code, proven by query counts.",
+      "license": "MIT",
+      "category": "performance",
+      "keywords": [
+        "php",
+        "laravel",
+        "symfony",
+        "doctrine",
+        "n+1"
+      ],
+      "repository": "https://github.com/gkwelding/php-query-performance-skills"
+    }
+  ]
+}
