@@ -2,7 +2,7 @@
   "name": "php-query-performance-skills",
   "displayName": "PHP Query Performance Skills",
   "description": "Find and fix database query problems in Laravel (Eloquent) and Symfony (Doctrine ORM) code, above all N+1 queries. Measures the query count first, fixes without changing behaviour, and proves each fix with the count afterwards.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": {
     "name": "Black Pug Ltd"
   },
